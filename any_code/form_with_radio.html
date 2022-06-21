@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+
+
+    <p id="message"></p>
+    <form id="my_form" method="POST">
+        <div>
+            <label for="name">Enter name</label>
+            <input type="text" size="10" placeholder="Enter name" name="name" id="name">
+        </div>
+        <div>
+            <label for="man">Man</label>
+            <input type="radio" name="gender" value="M" id="man">
+        </div>
+        <div>
+            <label for="fmaile">Fmale</label>
+            <input type="radio" name="gender" value="W" id="fmaile">
+        </div>
+        <div>
+            <button name="submit_me">Go On</button>
+        </div>
+
+    </form>
+
+<script>
+    $(document).ready(function () {
+        $("button").click(function() {
+            $name = $("#name").val();
+            $sex = $("input[name='gender']:checked").val();
+            $where = $("#message");
+            
+            $.ajax({
+                type: "POST",
+                url: "helper_for_radio.php",
+                data: {
+                    "name": $name,
+                    "gender": $sex
+                },
+                success: function(result){
+                    $where.html(result)
+                }
+
+            })
+            return false;
+  
+        })
+    })
+</script>
+</body>
+</html>
