@@ -20,6 +20,29 @@
             echo fgets($f) . "<br />";
         }
         fclose($f);
+        // with file_get_contents
+        echo "<br />";
+        $new_open_file = file_get_contents("key.pem");
+        echo $new_open_file;
+    
+        echo "<br />";
+        echo "<br />";
+        // read csv file from second line to the end of file.
+        $FILE = fopen("info.csv", 'r') or die ("Cannot open this file!");
+        $line = 0;
+
+        while ($array = fgetcsv($FILE, 1024, ";")) {
+            $line += 1;
+            if ($line == 1) {
+                continue;
+            }
+            $name = $array[0];
+            $address = $array[1];
+            echo "The name is $name and address is $address<br />";
+        }
+        
+        fclose($FILE)
+    
 
     ?>
 </body>
