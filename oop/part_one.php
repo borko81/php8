@@ -29,9 +29,13 @@
                     fclose($this->handle);
                 }
             }
+
+            public function __toString() {
+                return "Try to read file " . $this->filename . "<br />";
+            }
         }
         $f = new FileReader('oop.txt');
-        echo "File to read " . $f->filename . "<br />";
+        echo $f;
         echo $f->read();
     ?>
 </body>
